@@ -2,13 +2,14 @@ version: 1.0.{build}
 image: Visual Studio 2019
 
 install:
-  - choco install mingw --yes
+  - choco install msys2 --yes
+  - set PATH=C:\tools\msys64\usr\bin;%PATH%
+  - pacman -Syu --noconfirm
+  - pacman -S --noconfirm mingw-w64-x86_64-gcc
 
 build_script:
-  - cmd: |
-      set PATH=C:\ProgramData\chocolatey\lib\mingw\tools\install\bin;%PATH%
-      gcc --version
-      gcc -o microsocks.exe socks5srv.c sblist.c sblist_delete.c server.c
+  - gcc --version
+  - gcc -o microsocks.exe socks5srv.c sblist.c sblist_delete.c server.c
 
 artifacts:
   - path: microsocks.exe
