@@ -4,10 +4,11 @@ image: Visual Studio 2019
 install:
   - choco install msys2 --yes
   - set PATH=C:\tools\msys64\usr\bin;%PATH%
-  - pacman -Syu --noconfirm
-  - pacman -S --noconfirm mingw-w64-x86_64-gcc
+  - C:\tools\msys64\usr\bin\bash -lc "pacman -Syuu --noconfirm"
+  - C:\tools\msys64\usr\bin\bash -lc "pacman -S --noconfirm mingw-w64-x86_64-gcc"
 
 build_script:
+  - set PATH=C:\tools\msys64\mingw64\bin;%PATH%
   - gcc --version
   - gcc -o microsocks.exe socks5srv.c sblist.c sblist_delete.c server.c
 
