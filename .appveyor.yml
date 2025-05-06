@@ -5,8 +5,9 @@ install:
   - choco install mingw --yes
 
 build_script:
-  - SET "PATH=C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin;%PATH%"
-  - gcc -o microsocks.exe socks5srv.c sblist.c sblist_delete.c server.c
+  - cmd: |
+      set PATH=C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin;%PATH%
+      gcc -o microsocks.exe socks5srv.c sblist.c sblist_delete.c server.c
 
 artifacts:
   - path: microsocks.exe
